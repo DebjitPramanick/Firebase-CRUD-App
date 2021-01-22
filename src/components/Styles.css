@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: rgb(3, 2, 22);
+}
+
+.container{
+    max-width: 1200px;
+    height: 800px;
+    margin: auto;
+    background-color: white;
+    margin-top: 100px;
+    display: flex;
+}
+
+.leftbar-container{
+    flex-basis: 40%;
+    padding: 40px;
+    border-right: 2px grey solid;
+    background-color: #1761ff;
+    color: white;
+}
+
+.rightbar-container{
+    flex-basis: 60%;
+    padding: 40px;
+}
+
+
+/* -------- Left Bar --------*/ 
+
+
+.header{
+    font-weight: 100;
+    font-size: 36px;
+}
+
+.input-fields{
+    margin-top: 90px;
+}
+
+
+.img-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.img-container img{
+    width: 200px;
+    border-radius: 50%;
+    border: 4px solid rgb(0, 89, 255);
+    cursor: pointer;
+}
+
+.form-input{
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.form-input .MuiSvgIcon-root{
+    font-size: 22px;
+    color: grey;
+    margin-right: 12px;
+}
+
+input{
+    border: 0;
+    outline: 0;
+}
+
+.submit-btn{
+    margin: auto;
+    width: fit-content;
+    margin-top: 70px;
+    cursor: pointer;
+}
+
+.submit-btn button{
+    background-color: transparent;
+    border: 2px white solid;
+    padding: 10px 12px;
+    font-size: 16px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: 0;
+    color: white;
+}
