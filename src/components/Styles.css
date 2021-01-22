@@ -13,7 +13,7 @@ body{
     height: 800px;
     margin: auto;
     background-color: white;
-    margin-top: 140px;
+    margin-top: 10vh;
     display: flex;
 }
 
@@ -56,6 +56,7 @@ body{
 
 .img-container img{
     width: 200px;
+    height: 200px;
     border-radius: 50%;
     border: 5px solid rgb(238, 255, 0);
     cursor: pointer;
@@ -123,8 +124,7 @@ input{
   height: 100vh;
   margin: auto;
   padding: 40px;
-  background-color: rgba(0, 0, 0, 0.815);
-  position: absolute;
+  background-color: rgba(0, 0, 0, 0.966);
   position: fixed;
   top: 0;
   left: 0;
@@ -158,7 +158,7 @@ input{
 }
 
 .crop-field{
-  width: 600px;
+  width: 360px;
   margin: auto;
   padding: 40px;
   background-color: white;

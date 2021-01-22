@@ -106,7 +106,7 @@ const LeftBar = () => {
                 setShow(false)
             },2500);
 
-            setSrc(`http://inexa-tnf.com/wp-content/uploads/2017/05/unknow-person.jpg`);
+            setSrc(`https://www.history.ox.ac.uk/sites/default/files/styles/person_profile_photo/public/history/images/person/unknown-person-icon-4_0.jpg?itok=o2SPU-Ax`);
             setPreview("");
         }
 
@@ -118,7 +118,7 @@ const LeftBar = () => {
     /* -----------------Image Upload Section----------------- */
 
 
-    const [src, setSrc] = useState('http://inexa-tnf.com/wp-content/uploads/2017/05/unknow-person.jpg');
+    const [src, setSrc] = useState('https://www.history.ox.ac.uk/sites/default/files/styles/person_profile_photo/public/history/images/person/unknown-person-icon-4_0.jpg?itok=o2SPU-Ax');
 
     const [popup, setPopup] = useState(false); //For popup box
     const [image, setImage] = useState(null); //For setting crop image
@@ -214,7 +214,7 @@ const LeftBar = () => {
 
 
     const closeCrop = () =>{
-        setSrc('http://inexa-tnf.com/wp-content/uploads/2017/05/unknow-person.jpg');
+        setSrc('https://www.history.ox.ac.uk/sites/default/files/styles/person_profile_photo/public/history/images/person/unknown-person-icon-4_0.jpg?itok=o2SPU-Ax');
         setPopup(false)
     }
 
