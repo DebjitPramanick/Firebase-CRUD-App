@@ -12,7 +12,6 @@ const App = () => {
     return (
         <div>
             
-
             <Router>
                 <Switch>
                     <Route path="/:id?">
@@ -20,7 +19,6 @@ const App = () => {
                     </Route>
                 </Switch>
             </Router>
-
 
         </div>
     )

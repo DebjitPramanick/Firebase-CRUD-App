@@ -1,5 +1,5 @@
 import React, {useState,useRef, useEffect} from 'react'
-import {useParams} from 'react-router-dom';
+import {useParams,useHistory} from 'react-router-dom';
 import PersonIcon from '@material-ui/icons/Person';
 import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import DateRangeIcon from '@material-ui/icons/DateRange';
@@ -22,6 +22,7 @@ const LeftBar = () => {
 
 
     const userID = useParams().id;
+    const history = useHistory();
 
     useEffect(() => {
 
@@ -30,6 +31,7 @@ const LeftBar = () => {
                 setName(snapshot.val().name);
                 setAge(snapshot.val().age);
                 setPhone(snapshot.val().phone);
+                setImageURL(snapshot.val().image);
                 setPreview(snapshot.val().image);
             }
         })
@@ -37,7 +39,37 @@ const LeftBar = () => {
 
 
 
-    
+    const updateUser = e =>{
+        e.preventDefault();
+
+        const data = {
+            image: imageURL,
+            name: name,
+            age: age,
+            phone: phone
+        }
+
+
+        firebaseDB.child(`users/${userID}`).update(
+            data,
+            err => {
+                if(err){
+                    console.log(err);
+                }
+            }
+        )
+
+        setName('');
+        setAge('');
+        setPhone('');
+        setTimeout(() => {
+            setShow(false)
+        },2500);
+        setSrc(`http://inexa-tnf.com/wp-content/uploads/2017/05/unknow-person.jpg`);
+        setPreview("");
+
+        history.goBack();
+    }
 
     
 
@@ -269,12 +301,24 @@ const LeftBar = () => {
                     onChange={(e) => setAge(e.target.value)}>
                     </input>
                 </div>
+
+                {!userID && (
+                    <div className="submit-btn">
+                        <button onClick={(e) => addUser(e)}>
+                            Add user
+                        </button>
+                    </div>
+                )}
+
+                {userID && (
+                    <div className="update-btn">
+                        <button onClick={(e) => updateUser(e)}>
+                            Update user
+                        </button>
+                    </div>
+                )}
                 
-                <div className="submit-btn">
-                    <button onClick={(e) => addUser(e)}>
-                        Add user
-                    </button>
-                </div>
+                
             </div>
         </div>
     )

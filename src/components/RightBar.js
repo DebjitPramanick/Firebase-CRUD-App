@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { IconButton } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 
 import {Link} from 'react-router-dom'
 
@@ -12,13 +13,15 @@ const RightBar = () => {
 
     const [users, setUsers] = useState({});
 
+    const [query, setQuery] = useState("")
+
 
 
     useEffect(() => {
         firebaseDB.child('users').on('value',snapshot => {
             if(snapshot.val()){
                 setUsers({
-                    ...snapshot.val()
+                    ...snapshot.val(),
                 })
             }
         })
@@ -32,10 +35,33 @@ const RightBar = () => {
         firebaseDB.child(`users/${userID}`).remove();
     }
 
+
+    const searchUser = e => {
+        e.preventDefault();
+
+        var search = firebaseDB.child('users/').orderByChild("name");
+        search.once("value", function(snapshot) {
+          snapshot.forEach(function(child) {
+
+            if(child.val().name.toLowerCase().includes(query)){
+                setUsers(
+                    snapshot.val()
+                )
+            }
+          });
+        });
+
+    }
+
     return (
         <div className="rightbar-container">
             <div className="header">
                 ALL USERS
+            </div>
+
+            <div className="search-bar">
+                <input placeholder="Search users" onChange={(e) => setQuery(e.target.value)} value={query}></input>
+                <SearchIcon onClick={(e) => searchUser(e)}/>
             </div>
 
             <div className="users-list">

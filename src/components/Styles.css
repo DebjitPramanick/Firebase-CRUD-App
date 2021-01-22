@@ -13,9 +13,8 @@ body{
     height: 800px;
     margin: auto;
     background-color: white;
-    transform: translateY(18%);
+    margin-top: 140px;
     display: flex;
-    overflow: hidden;
 }
 
 .leftbar-container{
@@ -31,6 +30,7 @@ body{
     padding: 40px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 
@@ -83,7 +83,7 @@ input{
     font-size: 16px;
 }
 
-.submit-btn{
+.submit-btn, .update-btn{
     margin: auto;
     width: fit-content;
     margin-top: 70px;
@@ -102,16 +102,29 @@ input{
     color: white;
 }
 
+.update-btn button{
+    background-color: transparent;
+    border: 2px white solid;
+    padding: 10px 12px;
+    font-size: 16px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: 0;
+    color: white;
+}
+
 
 .choose-file{
   display: none;
 }
 
 .pop-up-box{
-  min-height: 100vh;
+  height: 100vh;
   margin: auto;
   padding: 40px;
   background-color: rgba(0, 0, 0, 0.815);
+  position: absolute;
   position: fixed;
   top: 0;
   left: 0;
@@ -150,6 +163,7 @@ input{
   padding: 40px;
   background-color: white;
 }
+
 
 
 
@@ -215,4 +229,16 @@ input{
 
 .table tbody tr td:nth-child(3) {
     font-weight: bold;
+}
+
+.search-bar{
+    margin-top: 18px;
+    border: 1px solid grey;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+.search-bar .MuiSvgIcon-root{
+    cursor: pointer;
 }
