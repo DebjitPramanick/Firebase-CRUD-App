@@ -3,6 +3,8 @@ import "../components/Styles.css"
 import LeftBar from './LeftBar'
 import RightBar from './RightBar'
 
+
+
 const Main = () => {
     return (
         <div className="container">

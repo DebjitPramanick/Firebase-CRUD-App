@@ -13,7 +13,7 @@ body{
     height: 800px;
     margin: auto;
     background-color: white;
-    margin-top: 100px;
+    transform: translateY(18%);
     display: flex;
     overflow: hidden;
 }

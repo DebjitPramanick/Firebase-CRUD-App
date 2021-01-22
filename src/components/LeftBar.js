@@ -1,4 +1,5 @@
-import React, {useState,useRef} from 'react'
+import React, {useState,useRef, useEffect} from 'react'
+import {useParams} from 'react-router-dom';
 import PersonIcon from '@material-ui/icons/Person';
 import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import DateRangeIcon from '@material-ui/icons/DateRange';
@@ -18,6 +19,27 @@ const LeftBar = () => {
     const [imageURL, setImageURL] = useState('');
 
     const [show,setShow] = useState(false); //For showing the loader
+
+
+    const userID = useParams().id;
+
+    useEffect(() => {
+
+        firebaseDB.child(`users/${userID}`).on('value',snapshot => {
+            if(snapshot.val()){
+                setName(snapshot.val().name);
+                setAge(snapshot.val().age);
+                setPhone(snapshot.val().phone);
+                setPreview(snapshot.val().image);
+            }
+        })
+    }, [userID])
+
+
+
+    
+
+    
 
 
 
@@ -51,6 +73,9 @@ const LeftBar = () => {
             setTimeout(() => {
                 setShow(false)
             },2500);
+
+            setSrc(`http://inexa-tnf.com/wp-content/uploads/2017/05/unknow-person.jpg`);
+            setPreview("");
         }
 
     }
@@ -128,6 +153,7 @@ const LeftBar = () => {
         setPopup(false);
 
         imageUpload(file);
+
     }
 
 

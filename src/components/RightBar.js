@@ -3,12 +3,16 @@ import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { IconButton } from '@material-ui/core';
 
+import {Link} from 'react-router-dom'
+
 import {firebaseDB} from "../Firebase"
 
 const RightBar = () => {
 
 
     const [users, setUsers] = useState({});
+
+
 
     useEffect(() => {
         firebaseDB.child('users').on('value',snapshot => {
@@ -20,6 +24,13 @@ const RightBar = () => {
         })
     }, [])
 
+
+    const removeUser = (userID) =>{
+
+        console.log(userID);
+
+        firebaseDB.child(`users/${userID}`).remove();
+    }
 
     return (
         <div className="rightbar-container">
@@ -41,7 +52,7 @@ const RightBar = () => {
 
                     <tbody>
 
-                        {Object.keys(users).map(id => (
+                        {Object.keys(users).map((id) => (
                             <tr key={id}>
                                 <td>
                                     <img className="profile-pic" src={users[id].image} alt=""/>
@@ -56,11 +67,15 @@ const RightBar = () => {
                                     <p className="age">{users[id].age}</p>
                                 </td>
                                 <td>
-                                    <IconButton>
-                                        <CreateIcon />
-                                    </IconButton>
 
-                                    <IconButton>
+                                    <Link to={`/${id}`}>
+                                        <IconButton>
+                                            <CreateIcon/>
+                                        </IconButton>
+                                    </Link>
+                                    
+
+                                    <IconButton onClick={() => removeUser(id)}>
                                         <DeleteIcon />
                                     </IconButton>
                                 </td>
