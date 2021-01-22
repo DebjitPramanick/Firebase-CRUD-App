@@ -9,16 +9,17 @@ body{
 }
 
 .container{
-    max-width: 1200px;
+    max-width: 1400px;
     height: 800px;
     margin: auto;
     background-color: white;
     margin-top: 100px;
     display: flex;
+    overflow: hidden;
 }
 
 .leftbar-container{
-    flex-basis: 40%;
+    flex-basis: 35%;
     padding: 40px;
     border-right: 2px grey solid;
     background-color: #1761ff;
@@ -26,8 +27,10 @@ body{
 }
 
 .rightbar-container{
-    flex-basis: 60%;
+    flex-basis: 65%;
     padding: 40px;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -60,7 +63,7 @@ body{
 
 .form-input{
     background-color: white;
-    padding: 10px;
+    padding: 12px 10px;
     margin-bottom: 20px;
     border-radius: 4px;
     display: flex;
@@ -95,4 +98,53 @@ input{
     cursor: pointer;
     outline: 0;
     color: white;
+}
+
+
+
+
+/*------ Right Bar -------*/
+
+.users-list{
+    margin-top: 40px;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+
+.profile-pic{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    background: rgb(238, 238, 238);
+}
+
+.table thead tr th{
+    padding: 20px 0;
+    border: 1px rgb(182, 182, 182) solid;
+    font-size: 14px;
+}
+
+.table tbody tr{
+    text-align: center;
+    padding: 14px;
+    border: 1px solid rgb(182, 182, 182);
+}
+
+.table tbody tr td{
+    border: 1px solid rgb(182, 182, 182);
+    padding: 10px;
+}
+
+.table .MuiSvgIcon-root{
+    font-size: 22px;
+}
+
+.table tbody tr td:nth-child(3) {
+    font-weight: bold;
 }

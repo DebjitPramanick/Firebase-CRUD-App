@@ -3,6 +3,13 @@ import PersonIcon from '@material-ui/icons/Person';
 import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 
+
+import {firebaseDB,storage} from "./Firebase"
+import CircularProgress from '@material-ui/core/CircularProgress';
+import 'react-image-crop/dist/ReactCrop.css';
+import ReactCrop from 'react-image-crop';
+
+
 const LeftBar = () => {
 
     const [src, setSrc] = useState('http://inexa-tnf.com/wp-content/uploads/2017/05/unknow-person.jpg');
