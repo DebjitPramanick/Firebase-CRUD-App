@@ -57,7 +57,7 @@ body{
 .img-container img{
     width: 200px;
     border-radius: 50%;
-    border: 4px solid rgb(0, 89, 255);
+    border: 5px solid rgb(238, 255, 0);
     cursor: pointer;
 }
 
@@ -77,8 +77,10 @@ body{
 }
 
 input{
+    width: 100%;
     border: 0;
     outline: 0;
+    font-size: 16px;
 }
 
 .submit-btn{
@@ -98,6 +100,72 @@ input{
     cursor: pointer;
     outline: 0;
     color: white;
+}
+
+
+.choose-file{
+  display: none;
+}
+
+.pop-up-box{
+  min-height: 100vh;
+  margin: auto;
+  padding: 40px;
+  background-color: rgba(0, 0, 0, 0.815);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center
+}
+
+.hide{
+  display: none;
+}
+
+.progress-box{
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cross-btn{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 40px;
+  cursor: pointer;
+}
+
+.cross-btn .MuiSvgIcon-root{
+  color: white;
+  font-size: 40px;
+}
+
+.crop-field{
+  width: 600px;
+  margin: auto;
+  padding: 40px;
+  background-color: white;
+}
+
+
+
+.crop-btn{
+    width: 100%;
+    background-color: transparent;
+    border: 2px #1761ff solid;
+    padding: 10px 12px;
+    font-size: 16px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: 0;
+    color: #1761ff;
+    font-weight: bold;
+    margin-top: 30px;
 }
 
 

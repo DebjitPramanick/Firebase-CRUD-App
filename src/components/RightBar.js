@@ -1,9 +1,26 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { IconButton } from '@material-ui/core';
 
+import {firebaseDB} from "../Firebase"
+
 const RightBar = () => {
+
+
+    const [users, setUsers] = useState({});
+
+    useEffect(() => {
+        firebaseDB.child('users').on('value',snapshot => {
+            if(snapshot.val()){
+                setUsers({
+                    ...snapshot.val()
+                })
+            }
+        })
+    }, [])
+
+
     return (
         <div className="rightbar-container">
             <div className="header">
@@ -24,29 +41,33 @@ const RightBar = () => {
 
                     <tbody>
 
-                        <tr>
-                            <td>
-                                <img className="profile-pic" src="https://avatars.githubusercontent.com/u/73888326?s=460&u=f43063d6c0717b1b7be6650bfa8435bfa43f5587&v=4" alt=""/>
-                            </td>
-                            <td>
-                                <p className="name">Debjit Pramanick</p>
-                            </td>
-                            <td>
-                                <p className="mobile">9330348081</p>
-                            </td>
-                            <td>
-                                <p className="age">21</p>
-                            </td>
-                            <td>
-                                <IconButton>
-                                    <CreateIcon />
-                                </IconButton>
+                        {Object.keys(users).map(id => (
+                            <tr key={id}>
+                                <td>
+                                    <img className="profile-pic" src={users[id].image} alt=""/>
+                                </td>
+                                <td>
+                                    <p className="name">{users[id].name}</p>
+                                </td>
+                                <td>
+                                    <p className="mobile">{users[id].phone}</p>
+                                </td>
+                                <td>
+                                    <p className="age">{users[id].age}</p>
+                                </td>
+                                <td>
+                                    <IconButton>
+                                        <CreateIcon />
+                                    </IconButton>
 
-                                <IconButton>
-                                    <DeleteIcon />
-                                </IconButton>
-                            </td>
-                        </tr>
+                                    <IconButton>
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </td>
+                            </tr>
+                        ))}
+
+                        
 
                     </tbody>
                 </table>
