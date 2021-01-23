@@ -18,6 +18,6 @@ Hi! I'm Debjit, a **MERN Stack Developer**. This is a simple application for cre
 
 ## Screenshots
 
-<img src="https://drive.google.com/file/d/1MAmrrtR1-0MSZyFEm95d5JxO7Tz1CAjQ/view?usp=sharing" alt=""/>
+<img src="./screenshots/ss1.png" alt=""/>
 <br>
-<img src="https://drive.google.com/file/d/1GpaCMMH8-vBlTxaEV-Clg3CBkZMcuAMH/view?usp=sharing alt=""/>
+<img src="./screenshots/ss2.png" alt=""/>
