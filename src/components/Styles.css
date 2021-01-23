@@ -8,6 +8,24 @@ body{
     background-color: rgb(3, 2, 22);
 }
 
+
+.message-container{
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    color: grey;
+    font-weight: 400;
+    background-color: white;
+}
+
+.message-container p{
+    padding: 20px;
+}
+
+
 .container{
     max-width: 1400px;
     height: 800px;
@@ -23,6 +41,7 @@ body{
     border-right: 2px grey solid;
     background-color: #1761ff;
     color: white;
+    position: relative;
 }
 
 .rightbar-container{
@@ -40,6 +59,40 @@ body{
 .header{
     font-weight: 100;
     font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.progress-popup{
+    background-color: rgba(0, 0, 0, 0.445);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-box{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    padding: 40px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    row-gap: 26px;
+}
+
+.loading-box p{
+    font-size: 16px;
+    color: grey;
 }
 
 .input-fields{
@@ -58,7 +111,7 @@ body{
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    border: 5px solid rgb(238, 255, 0);
+    border: 5px solid rgb(0, 255, 98);
     cursor: pointer;
 }
 
@@ -187,6 +240,18 @@ input{
 
 /*------ Right Bar -------*/
 
+
+.no-user{
+    margin: auto;
+    text-align: center;
+}
+
+.no-user p{
+    font-size: 24px;
+    color: grey;
+    font-weight: 400;
+}
+
 .users-list{
     margin-top: 40px;
     overflow-y: scroll;
@@ -241,4 +306,19 @@ input{
 }
 .search-bar .MuiSvgIcon-root{
     cursor: pointer;
+    margin-right: 14px;
+    color: grey;
+}
+
+
+@media (max-width: 860px){
+    .container{
+        display: none;
+    }
+
+    .message-container{
+        display: block;
+        display: flex;
+    }
+
 }

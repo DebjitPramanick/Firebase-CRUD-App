@@ -11,7 +11,11 @@ import 'react-image-crop/dist/ReactCrop.css';
 import ReactCrop from 'react-image-crop';
 
 
+
+
 const LeftBar = () => {
+
+    const unknowURL = 'https://www.jadefontenotdds.com/site/wp-content/uploads/2019/02/92979836-stock-vector-profile-anonymous-face-icon-gray-silhouette-person-male-default-avatar-photo-placeholder-isolated-on.jpg';
 
     const [name, setName] = useState('');
     const [age, setAge] = useState(null);
@@ -20,27 +24,40 @@ const LeftBar = () => {
 
     const [show,setShow] = useState(false); //For showing the loader
 
-
     const userID = useParams().id;
     const history = useHistory();
 
     useEffect(() => {
 
-        firebaseDB.child(`users/${userID}`).on('value',snapshot => {
-            if(snapshot.val()){
-                setName(snapshot.val().name);
-                setAge(snapshot.val().age);
-                setPhone(snapshot.val().phone);
-                setImageURL(snapshot.val().image);
-                setPreview(snapshot.val().image);
-            }
-        })
+        if(userID){
+
+            firebaseDB.child(`users/${userID}`).on('value',snapshot => {
+                if(snapshot.val()){
+                    setName(snapshot.val().name);
+                    setAge(snapshot.val().age);
+                    setPhone(snapshot.val().phone);
+                    setImageURL(snapshot.val().image);
+                    setPreview(snapshot.val().image);
+                }
+            })
+        
+        }
+
+        else{
+            setName('');
+            setAge('');
+            setPhone('');
+            setImageURL('');
+            setPreview('');
+        }
     }, [userID])
 
 
 
     const updateUser = e =>{
         e.preventDefault();
+
+        setShow(true);
 
         const data = {
             image: imageURL,
@@ -49,26 +66,30 @@ const LeftBar = () => {
             phone: phone
         }
 
-
-        firebaseDB.child(`users/${userID}`).update(
-            data,
-            err => {
-                if(err){
-                    console.log(err);
+        
+        setTimeout(() => {
+            setShow(false);
+            firebaseDB.child(`users/${userID}`).update(
+                data,
+                err => {
+                    if(err){
+                        console.log(err);
+                    }
                 }
-            }
-        )
+            )
+        },2500);
+
+        history.replace("/",[userID]);
 
         setName('');
         setAge('');
         setPhone('');
-        setTimeout(() => {
-            setShow(false)
-        },2500);
-        setSrc(`http://inexa-tnf.com/wp-content/uploads/2017/05/unknow-person.jpg`);
+
+        setSrc(unknowURL);
         setPreview("");
 
-        history.goBack();
+        //userID = "";
+        
     }
 
     
@@ -89,24 +110,24 @@ const LeftBar = () => {
                 phone: phone
             }
 
-            firebaseDB.child('users').push(
-                data,
-                err => {
-                    if(err){
-                        console.log(err);
-                    }
-                }
-            )
 
+            setTimeout(() => {
+                setShow(false);
+                firebaseDB.child('users').push(
+                    data,
+                    err => {
+                        if(err){
+                            console.log(err);
+                        }
+                    }
+                )
+            },2500);
+            
             setName('');
             setAge('');
             setPhone('');
 
-            setTimeout(() => {
-                setShow(false)
-            },2500);
-
-            setSrc(`https://www.history.ox.ac.uk/sites/default/files/styles/person_profile_photo/public/history/images/person/unknown-person-icon-4_0.jpg?itok=o2SPU-Ax`);
+            setSrc(unknowURL);
             setPreview("");
         }
 
@@ -118,7 +139,7 @@ const LeftBar = () => {
     /* -----------------Image Upload Section----------------- */
 
 
-    const [src, setSrc] = useState('https://www.history.ox.ac.uk/sites/default/files/styles/person_profile_photo/public/history/images/person/unknown-person-icon-4_0.jpg?itok=o2SPU-Ax');
+    const [src, setSrc] = useState(unknowURL);
 
     const [popup, setPopup] = useState(false); //For popup box
     const [image, setImage] = useState(null); //For setting crop image
@@ -214,7 +235,7 @@ const LeftBar = () => {
 
 
     const closeCrop = () =>{
-        setSrc('https://www.history.ox.ac.uk/sites/default/files/styles/person_profile_photo/public/history/images/person/unknown-person-icon-4_0.jpg?itok=o2SPU-Ax');
+        setSrc(unknowURL);
         setPopup(false)
     }
 
@@ -236,10 +257,28 @@ const LeftBar = () => {
 
     return (
         <div className="leftbar-container">
+
+            
             <div className="header">
-                ADD USER
+                {userID? (
+                    <>
+                    <p>UPDATE USER</p>
+                    <CancelIcon style={{cursor: "pointer"}}
+                    onClick={() => history.replace("/",[]) }/>
+                    </>
+                )
+                : <p>ADD USER</p>}
             </div>
 
+
+            {show && (
+                <div className="progress-popup">
+                    <div className="loading-box">
+                        <CircularProgress />
+                        <p>Uploading...</p>
+                    </div>
+                </div>
+            )}
 
             <div className="input-fields">
 
