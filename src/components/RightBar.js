@@ -11,7 +11,7 @@ import {firebaseDB} from "../Firebase"
 const RightBar = () => {
 
 
-    const [users, setUsers] = useState({});
+    const [users, setUsers] = useState([]);
 
     const [query, setQuery] = useState("")
 
@@ -20,38 +20,33 @@ const RightBar = () => {
     useEffect(() => {
         firebaseDB.child('users').on('value',snapshot => {
             if(snapshot.val()){
-                setUsers({
-                    ...snapshot.val(),
-                })
+                snapshot.forEach(snap => {
+                    const userModel = {
+                        id : snap.key,
+                        details: snap.val()
+                    }
+                    console.log(userModel);
+                    setUsers((user) => {
+                        return [...user,userModel]
+                    })
+                });
             }
         })
+
     }, [])
 
 
-    const removeUser = (userID) =>{
 
-        console.log(userID);
+    const removeUser = (userID) =>{
 
         firebaseDB.child(`users/${userID}`).remove();
     }
 
 
-    const searchUser = e => {
-        e.preventDefault();
 
-        var search = firebaseDB.child('users/').orderByChild("name");
-        search.once("value", function(snapshot) {
-          snapshot.forEach(function(child) {
-
-            if(child.val().name.toLowerCase().includes(query)){
-                setUsers(
-                    snapshot.val()
-                )
-            }
-          });
-        });
-
-    }
+    const allusers = users.filter(user => {
+        return user.details.name.toLowerCase().includes(query.toLowerCase());
+    })
 
     return (
         <div className="rightbar-container">
@@ -60,8 +55,8 @@ const RightBar = () => {
             </div>
 
             <div className="search-bar">
+                <SearchIcon/>
                 <input placeholder="Search users" onChange={(e) => setQuery(e.target.value)} value={query}></input>
-                <SearchIcon onClick={(e) => searchUser(e)}/>
             </div>
 
             <div className="users-list">
@@ -78,33 +73,35 @@ const RightBar = () => {
 
                     <tbody>
 
-                        {Object.keys(users).map((id) => (
-                            <tr key={id}>
+                        {allusers.map((user) => (
+                            <tr key={user.id}>
                                 <td>
-                                    <img className="profile-pic" src={users[id].image} alt=""/>
+                                    <img className="profile-pic" src={user.details.image} alt=""/>
                                 </td>
                                 <td>
-                                    <p className="name">{users[id].name}</p>
+                                    <p className="name">{user.details.name}</p>
                                 </td>
                                 <td>
-                                    <p className="mobile">{users[id].phone}</p>
+                                    <p className="mobile">{user.details.phone}</p>
                                 </td>
                                 <td>
-                                    <p className="age">{users[id].age}</p>
+                                    <p className="age">{user.details.age}</p>
                                 </td>
                                 <td>
 
-                                    <Link to={`/${id}`}>
+                                    <Link to={`/${user.id}`}>
                                         <IconButton>
                                             <CreateIcon/>
                                         </IconButton>
                                     </Link>
                                     
 
-                                    <IconButton onClick={() => removeUser(id)}>
+                                    <IconButton onClick={() => removeUser(user.id)}>
                                         <DeleteIcon />
                                     </IconButton>
                                 </td>
+
+                                {/*console.log(user)*/}
                             </tr>
                         ))}
 
