@@ -9,7 +9,7 @@ Hi! I'm Debjit, a **MERN Stack Developer**. This is a simple application for cre
 
 <br>
 
-# Features
+## Features
 
 - Creating users with name, phone no. age and an image of user.
 - Updating the user dettails.
