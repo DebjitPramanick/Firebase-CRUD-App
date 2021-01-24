@@ -1,9 +1,10 @@
 # FIREBASE CRUD APPLICATION
 
 Hi! I'm Debjit, a **MERN Stack Developer**. This is a simple application for creating, updating, deleting and searching datas. I created this project using **React** for frtontend and **Firebase** for storing data.
-
 <br>
-
+<br>
+<br>
+<br>
 > ### Web App Link - https://firebase-crud-app.netlify.app/
 
 
